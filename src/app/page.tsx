@@ -46,7 +46,7 @@ export default function Home() {
       blog: "Blog",
       cart: "Cart 🛒",
       downloadApp: "Download App",
-      subtle: "Combo with preferential price",
+      subTitle: "Combo with preferential price",
       whyChooseUs: "Why Choose Mekong Candle?",
       gift: "🎁 Meaningful Gift",
       giftDesc: "Scented candles help you express love to your loved ones.",
