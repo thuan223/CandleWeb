@@ -2,9 +2,9 @@
 import { useState } from "react";
 
 export default function Home() {
-  const [language, setLanguage] = useState<any>("vi");
+  const [language, setLanguage] = useState("vi");
 
-  const translations: any = {
+  const translations = {
     vi: {
       freeShipping: "🚚 Miễn phí vận chuyển hôm nay!",
       limitedOffer: "🔥 Ưu đãi có hạn!",
