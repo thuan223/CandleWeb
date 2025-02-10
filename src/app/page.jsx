@@ -79,17 +79,16 @@ export default function Home() {
   return (
     <div className="bg-[#FAF6F2] text-[#3D2B1F]">
       {/* Header */}
-      <header className="bg-[#6B1D1D] text-white text-sm flex justify-between p-2 px-8">
+      <header className="bg-[#6B1D1D] text-white text-sm flex flex-wrap justify-center md:justify-between p-2 px-4 md:px-8">
         <span>{t.freeShipping}</span>
-        <span>{t.limitedOffer}</span>
+        <span className="hidden md:inline">{t.limitedOffer}</span>
         <span>{t.freeShipping}</span>
       </header>
 
       {/* Navbar */}
-      <nav className="flex justify-between items-center p-5 border-b">
+      <nav className="flex flex-wrap justify-between items-center p-5 border-b">
         <h1 className="text-3xl font-bold">Mekong Candle🔥</h1>
-
-        <ul className="flex gap-6 text-lg items-center">
+        <ul className="flex flex-wrap gap-4 md:gap-6 text-lg items-center">
           <li>{t.home}</li>
           <li>{t.ourStory}</li>
           <li>{t.blog}</li>
@@ -115,32 +114,21 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="flex p-10">
-        <div className="w-1/3">
-          <h2 className="text-4xl font-bold">
-            Thắp sáng - Thư giãn - Tận hưởng 🔥
-          </h2>
-          <p className="mt-4">
-            {language === "vi"
-              ? "Nến thơm được làm từ nguyên liệu tự nhiên cao cấp, mang đến không gian ấm áp và thư giãn."
-              : "Scented candles crafted from high-quality, natural ingredients for a calming experience."}
-          </p>
-          <h3 className=" font-bold text-[20px] mt-4">{t.subTitle}</h3>
+      <section className="flex flex-wrap md:flex-nowrap p-6 md:p-10 items-center">
+        <div className="w-full md:w-1/2">
+          <h2 className="text-4xl font-bold">Thắp sáng - Thư giãn - Tận hưởng 🔥</h2>
+          <p className="mt-4">{t.subTitle}</p>
           <img
             src="https://firebasestorage.googleapis.com/v0/b/candleapp-69573.appspot.com/o/combo_buoiduasen_16_9.png?alt=media&token=c2d95ada-27a9-4689-b07b-84a269c248b0"
-            width={400}
-            height={450}
             alt="Candles"
-            className="rounded-lg mt-5"
+            className="rounded-lg mt-5 w-full max-w-[400px]"
           />
         </div>
-        <div className="w-2/3 ml-[100px]">
+        <div className="w-full md:w-1/2 flex justify-center mt-6 md:mt-0">
           <img
             src="https://firebasestorage.googleapis.com/v0/b/candleapp-69573.appspot.com/o/VinhLongVideoThumbnail.png?alt=media&token=e3c9d0bf-95cb-4947-a5e2-ac31ba8406a6"
-            width={800}
-            height={450}
-            alt="Candles"
-            className="rounded-lg"
+            alt="VR Experience"
+            className="rounded-lg w-full max-w-[600px]"
           />
         </div>
       </section>
@@ -148,15 +136,13 @@ export default function Home() {
       {/* Product Section */}
       <section className="p-10">
         <h2 className="text-4xl font-bold text-center">{t.shopCollection}</h2>
-        <div className="grid grid-cols-4 gap-6 mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
           {products.map((product, index) => (
             <div key={index} className="border p-4 rounded-lg shadow-lg">
               <img
                 src={product.image}
                 alt={language == "vi" ? product.nameVI : product.nameEN}
-                width={200}
-                height={200}
-                className="object-cover mx-auto rounded"
+                className="object-cover mx-auto rounded w-full max-w-[200px] h-auto"
               />
               <h3 className="text-xl font-semibold mt-2 text-center">
                 {language == "vi" ? product.nameVI : product.nameEN}
@@ -177,13 +163,12 @@ export default function Home() {
         </div>
       </section>
       <div className="bg-[#FAF6F2] text-[#3D2B1F]">
-        {/* Phần tiếp theo */}
         <section className="p-10 text-center bg-white">
           <h2 className="text-4xl font-bold">{t.whyChooseUs}</h2>
           <p className="mt-4 text-lg">
             {t.giftDesc} {t.relaxDesc} {t.vrExperienceDesc}
           </p>
-          <div className="grid grid-cols-3 gap-6 mt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-8">
             <div className="p-6 border rounded-lg shadow-lg">
               <h3 className="text-2xl font-semibold">{t.gift}</h3>
               <p className="mt-2">{t.giftDesc}</p>
@@ -199,15 +184,13 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Hướng dẫn sử dụng VR */}
         <section className="p-10 text-center bg-[#FFF8F0]">
           <h2 className="text-4xl font-bold">{t.vrGuide}</h2>
           <p className="mt-4 text-lg">{t.vrGuideDesc}</p>
           <div className="flex justify-center mt-6">
             <iframe
-              width="800"
-              height="450"
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+              className="w-full max-w-3xl h-auto aspect-video"
+              src="https://www.youtube.com/embed/uugqN3x3ZEY?si=CUibwJbqJ1WnFXOe"
               title="Hướng dẫn sử dụng VR"
               frameBorder="0"
               allowFullScreen
@@ -215,15 +198,16 @@ export default function Home() {
           </div>
         </section>
       </div>
+
       {/* Footer */}
       <footer className="bg-[#6B1D1D] text-white p-5 mt-10">
-        <div className="flex justify-between">
-          <div>
+        <div className="flex flex-wrap justify-between text-center md:text-left">
+          <div className="w-full md:w-1/2">
             <h3 className="text-xl font-bold">{t.contactUs}</h3>
             <p>Email: support@mekongcandle.com</p>
             <p>Phone: +84 123 456 789</p>
           </div>
-          <div>
+          <div className="w-full md:w-1/2 mt-4 md:mt-0">
             <h3 className="text-xl font-bold">{t.followUs}</h3>
             <p>Facebook | Instagram | TikTok</p>
           </div>
