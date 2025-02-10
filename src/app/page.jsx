@@ -1,4 +1,5 @@
 "use client";
+import Footer from "@/components/footer";
 import { useState } from "react";
 
 export default function Home() {
@@ -200,19 +201,7 @@ export default function Home() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-[#6B1D1D] text-white p-5 mt-10">
-        <div className="flex flex-wrap justify-between text-center md:text-left">
-          <div className="w-full md:w-1/2">
-            <h3 className="text-xl font-bold">{t.contactUs}</h3>
-            <p>Email: support@mekongcandle.com</p>
-            <p>Phone: +84 123 456 789</p>
-          </div>
-          <div className="w-full md:w-1/2 mt-4 md:mt-0">
-            <h3 className="text-xl font-bold">{t.followUs}</h3>
-            <p>Facebook | Instagram | TikTok</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
