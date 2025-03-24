@@ -3,11 +3,20 @@ import React, { useEffect, useState } from "react";
 import { auth } from "@/config/FireBaseConfig";
 import { checkAdmin } from "@/util/checkAdmin";
 import { fetchOrders } from "@/util/fetchOrders";
+import { User } from "firebase/auth";
+interface Order {
+  id: string;
+  candleThumbnailImage: string;
+  candleName: string;
+  customerName: string;
+  quantity: number;
+  totalPrice: number;
+}
 
 const Page = () => {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>();
   const [isAdmin, setIsAdmin] = useState(false);
-  const [orders, setOrders] = useState<any[]>([]);
+  const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

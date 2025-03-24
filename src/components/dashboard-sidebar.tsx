@@ -5,10 +5,10 @@ import { useRouter } from "next/navigation";
 import { signInWithPopup, GoogleAuthProvider, signOut } from "firebase/auth";
 import { checkAdmin } from "@/util/checkAdmin"; // Import hàm kiểm tra admin
 import { Menu, X, Package, ShoppingCart, Home } from "lucide-react";
-
+import { User } from "firebase/auth";
 const Sidebar = () => {
   const router = useRouter();
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User|null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -70,10 +70,10 @@ const Sidebar = () => {
           ⛔ Bạn không có quyền truy cập trang này!
         </p>
         <button
-          onClick={handleLogout}
-          className="mt-4 px-4 py-2 bg-gray-500 text-white rounded"
+          onClick={handleLogin}
+          className="px-4 py-2 mt-4 bg-blue-500 text-white rounded"
         >
-          Đăng xuất
+          Đăng nhập với Google
         </button>
       </div>
     );
