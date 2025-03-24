@@ -1,10 +1,13 @@
 "use client";
 import Footer from "@/components/footer";
 import { useState } from "react";
+import * as Dialog from "@radix-ui/react-dialog";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
   const [language, setLanguage] = useState("vi");
-
+  const [open, setOpen] = useState(false);
   const translations = {
     vi: {
       freeShipping: "🚚 Miễn phí vận chuyển hôm nay!",
@@ -15,7 +18,7 @@ export default function Home() {
       home: "Trang chủ",
       shop: "Cửa hàng",
       newArrival: "Hàng mới",
-      ourStory: "Câu chuyện",
+      manage: "Quản lý",
       blog: "Blog",
       cart: "Giỏ hàng 🛒",
       downloadApp: "Tải App",
@@ -43,7 +46,7 @@ export default function Home() {
       home: "Home",
       shop: "Shop",
       newArrival: "New Arrival",
-      ourStory: "Our Story",
+      manage: "Manage",
       blog: "Blog",
       cart: "Cart 🛒",
       downloadApp: "Download App",
@@ -63,22 +66,51 @@ export default function Home() {
       followUs: "Follow Us",
     },
   };
-  const handleDownload = () => {
-    const url =
-      "https://drive.google.com/uc?export=download&id=1Ri6vbO3MtXK8yF3e5cawcxmzGF5yKlh6";
+  const qrImageUrl =
+    "https://firebasestorage.googleapis.com/v0/b/candleapp-69573.appspot.com/o/Download_App.png?alt=media&token=b157d84b-ea2c-4a26-a078-470ba88bb058";
 
-    const link = document.createElement("a");
-    link.href = url;
-    link.setAttribute("download", "Mekong_Candle_App.apk"); // Đổi tên file nếu cần
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
 
   const t = translations[language];
 
   return (
     <div className="bg-[#FAF6F2] text-[#3D2B1F]">
+      <Dialog.Root open={open} onOpenChange={setOpen}>
+        <Dialog.Portal>
+          {/* Overlay mờ + hiệu ứng mở */}
+          <Dialog.Overlay className="fixed inset-0 bg-black/60 backdrop-blur-sm animate-fade-in" />
+
+          {/* Nội dung chính */}
+          <Dialog.Content className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-xl shadow-2xl w-96 animate-scale-in">
+            {/* Tiêu đề */}
+            <Dialog.Title className="text-2xl font-bold text-center text-gray-800 mb-3">
+              Quét mã QR để tải ứng dụng
+            </Dialog.Title>
+
+            {/* Nội dung */}
+            <div className="flex flex-col items-center gap-4">
+              <p className="text-center text-gray-600 px-4">
+                Dùng điện thoại của bạn để quét mã QR và tải ngay <strong>Mekong Candle App</strong>!
+              </p>
+
+              {/* Ảnh QR Code */}
+              <img
+                src={qrImageUrl}
+                alt="QR Code"
+                className="w-56 h-56 rounded-lg shadow-md border border-gray-300"
+              />
+            </div>
+
+            {/* Nút đóng */}
+            <button
+              onClick={() => setOpen(false)}
+              className="mt-5 w-full py-2 bg-red-500 text-white font-semibold rounded-lg shadow hover:bg-red-600 transition"
+            >
+              ✖ Đóng
+            </button>
+          </Dialog.Content>
+        </Dialog.Portal>
+      </Dialog.Root>
+
       {/* Header */}
       <header className="bg-[#6B1D1D] text-white text-sm flex flex-wrap justify-center md:justify-between p-2 px-4 md:px-8">
         <span>{t.freeShipping}</span>
@@ -90,10 +122,10 @@ export default function Home() {
       <nav className="flex flex-wrap justify-between items-center p-5 border-b">
         <h1 className="text-3xl font-bold">Mekong Candle🔥</h1>
         <ul className="flex flex-wrap gap-4 md:gap-6 text-lg items-center">
-          <li>{t.home}</li>
-          <li>{t.ourStory}</li>
-          <li>{t.blog}</li>
-          <li>
+          <li className="cursor-pointer">{t.home}</li>
+          <li className="cursor-pointer" onClick={() => router.push('/dashboard/order')}>{t.manage}</li>
+          <li className="cursor-pointer">{t.blog}</li>
+          <li className="cursor-pointer">
             <select
               value={language}
               onChange={(e) => setLanguage(e.target.value)}
@@ -105,7 +137,7 @@ export default function Home() {
           </li>
           <li>
             <button
-              onClick={handleDownload}
+              onClick={() => setOpen(true)}
               className="bg-[#6B1D1D] text-white px-4 py-2 rounded"
             >
               {t.downloadApp}
@@ -155,7 +187,7 @@ export default function Home() {
               </p>
               <div className="flex justify-between items-center mt-4">
                 <span className="text-lg font-bold">{product.price}₫</span>
-                <button className="bg-[#6B1D1D] text-white px-4 py-2 rounded">
+                <button onClick={() => setOpen(true)} className="bg-[#6B1D1D] text-white px-4 py-2 rounded">
                   {t.orderNow}
                 </button>
               </div>
@@ -212,7 +244,7 @@ const products = [
     nameEN: "Longan Candle",
     descriptionVI: "Hương ngọt dịu từ nhãn Bạc Liêu, thư giãn và ấm cúng.",
     descriptionEN: "Sweet aroma from Bạc Liêu longan, relaxing.",
-    price: "260000",
+    price: "120000",
     image:
       "https://firebasestorage.googleapis.com/v0/b/candleapp-69573.appspot.com/o/BacLieu.jpeg?alt=media&token=73dca7e4-3b74-40dd-924c-d9c5a0bdd10b",
   },
@@ -221,7 +253,7 @@ const products = [
     nameEN: "Coconut Candle",
     descriptionVI: "Tinh dầu dừa Bến Tre, hương thơm thanh khiết.",
     descriptionEN: "Pure coconut oil scent from Bến Tre.",
-    price: "180000",
+    price: "120000",
     image:
       "https://firebasestorage.googleapis.com/v0/b/candleapp-69573.appspot.com/o/BenTre.jpeg?alt=media&token=4f0ffa05-8a50-400f-8407-e849a1945648",
   },
@@ -230,7 +262,7 @@ const products = [
     nameEN: "Lotus Candle",
     descriptionVI: "Hương sen Đồng Tháp giúp tâm hồn bạn bình yên.",
     descriptionEN: "Đồng Tháp lotus scent for peace of mind.",
-    price: "250000",
+    price: "120000",
     image:
       "https://firebasestorage.googleapis.com/v0/b/candleapp-69573.appspot.com/o/DongThap.jpeg?alt=media&token=9b7fad64-7d4a-48bf-83f6-dfa388c5163b",
   },
@@ -239,7 +271,7 @@ const products = [
     nameEN: "Pomelo Candle",
     descriptionVI: "Hương bưởi Vĩnh Long tươi mát, tràn đầy năng lượng.",
     descriptionEN: "Refreshing pomelo scent from Vĩnh Long.",
-    price: "200000",
+    price: "120000",
     image:
       "https://firebasestorage.googleapis.com/v0/b/candleapp-69573.appspot.com/o/VinhLong.jpeg?alt=media&token=2c4ad77c-5aee-4c4c-9af3-e63839959132",
   },
