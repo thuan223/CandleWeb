@@ -244,7 +244,7 @@ const products = [
     nameEN: "Longan Candle",
     descriptionVI: "Hương ngọt dịu từ nhãn Bạc Liêu, thư giãn và ấm cúng.",
     descriptionEN: "Sweet aroma from Bạc Liêu longan, relaxing.",
-    price: "120000",
+    price: "130000",
     image:
       "https://firebasestorage.googleapis.com/v0/b/candleapp-69573.appspot.com/o/BacLieu.jpeg?alt=media&token=73dca7e4-3b74-40dd-924c-d9c5a0bdd10b",
   },
@@ -253,7 +253,7 @@ const products = [
     nameEN: "Coconut Candle",
     descriptionVI: "Tinh dầu dừa Bến Tre, hương thơm thanh khiết.",
     descriptionEN: "Pure coconut oil scent from Bến Tre.",
-    price: "120000",
+    price: "130000",
     image:
       "https://firebasestorage.googleapis.com/v0/b/candleapp-69573.appspot.com/o/BenTre.jpeg?alt=media&token=4f0ffa05-8a50-400f-8407-e849a1945648",
   },
@@ -262,7 +262,7 @@ const products = [
     nameEN: "Lotus Candle",
     descriptionVI: "Hương sen Đồng Tháp giúp tâm hồn bạn bình yên.",
     descriptionEN: "Đồng Tháp lotus scent for peace of mind.",
-    price: "120000",
+    price: "130000",
     image:
       "https://firebasestorage.googleapis.com/v0/b/candleapp-69573.appspot.com/o/DongThap.jpeg?alt=media&token=9b7fad64-7d4a-48bf-83f6-dfa388c5163b",
   },
@@ -271,7 +271,7 @@ const products = [
     nameEN: "Pomelo Candle",
     descriptionVI: "Hương bưởi Vĩnh Long tươi mát, tràn đầy năng lượng.",
     descriptionEN: "Refreshing pomelo scent from Vĩnh Long.",
-    price: "120000",
+    price: "130000",
     image:
       "https://firebasestorage.googleapis.com/v0/b/candleapp-69573.appspot.com/o/VinhLong.jpeg?alt=media&token=2c4ad77c-5aee-4c4c-9af3-e63839959132",
   },
